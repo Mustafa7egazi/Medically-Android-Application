@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background_color"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    tools:context=".HelpActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Help !!"
+        android:textColor="#FF9800"
+        android:textSize="50dp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/text_color"
+        android:padding="20dp"
+        android:text="This application helps doctors in their work ,
+ as it allows each doctor to create his own account on our application ,
+ know the patient data he has had for years ,
+ also  it allows him to add new patient data or modify the data of a patient
+  and allows the possibility of communicating with the patient at any time"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:padding="10dp"
+        android:text="For any feedback contact us on :- "
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#FF9800"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:paddingLeft="30dp"
+        android:text="+0263548276468
+                                                                       medically@gmail.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#0037FF"
+        android:textStyle="bold|italic" />
+
+</LinearLayout>

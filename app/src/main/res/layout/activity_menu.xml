@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn_back_outlined"
+    android:orientation="vertical"
+    tools:context=".MenuActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="?attr/background_color"
+        android:elevation="10dp"
+        android:outlineSpotShadowColor="?attr/shadow_Color">
+
+        <ImageView
+            android:id="@+id/imPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTintMode="add"
+            android:src="@drawable/profile1" />
+
+        <TextView
+            android:id="@+id/usrName"
+            style="@android:style/TextAppearance.Holo.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imPhoto"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Medically"
+            android:textAlignment="center"
+            android:textColor="#FF9800"
+            android:textSize="50dp"
+            android:textStyle="bold|italic" />
+
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usrName">
+            <TableRow
+                android:layout_marginBottom="20dp">
+                <TextView
+                    android:id="@+id/darkMode"
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/usrName"
+                    android:text="Dark Mode soon .."
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_color"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:enabled="false"
+                    android:id="@+id/bt_switch"
+                    style="@android:style/TextAppearance.Holo.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/darkMode"
+                    android:layout_toRightOf="@+id/darkMode"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="@color/white"
+                    android:textStyle="italic" />
+            </TableRow>
+            <TableRow
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/StartMessage"
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bt_switch"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="50dp"
+                    android:text="Message"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_color"
+                    android:textStyle="bold" />
+
+                <Button
+
+                    android:id="@+id/btn2"
+                    style="@android:style/TextAppearance.Holo.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/StartMessage"
+                    android:backgroundTint="#FF9800"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:onClick="messageBtnClick"
+                    android:text="  SHOW   "
+                    android:textColor="@color/white"
+                    android:textStyle="italic" />
+            </TableRow>
+            <TableRow
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/contact"
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact us ?"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_color"
+                    android:textStyle="bold"
+                    />
+
+                <Button
+
+                    android:id="@+id/btn3"
+                    style="@android:style/TextAppearance.Holo.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_below="@id/help"
+                    android:layout_toRightOf="@id/contact"
+                    android:backgroundTint="#FF9800"
+                    android:onClick="onclickAC"
+                    android:text="Contact"
+                    android:textColor="@color/white"
+                    android:textStyle="italic" />
+
+            </TableRow>
+            <TableRow
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/help"
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_color"
+                    android:textStyle="bold"
+
+                    />
+
+                <Button
+
+                    android:id="@+id/btn4"
+                    style="@android:style/TextAppearance.Holo.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/help"
+                    android:backgroundTint="#FF9800"
+                    android:layout_marginStart="5dp"
+                    android:onClick="onclickHE"
+                    android:text="   Help    "
+                    android:textColor="@color/white"
+                    android:textStyle="italic" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/logOutBtn"
+            style="@android:style/TextAppearance.Holo.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#ECE8E8"
+            android:onClick="logOutClick"
+            android:shadowColor="#FF9800"
+            android:shadowRadius="10"
+            android:text="LOG OUT!"
+            android:textColor="#FF9800"
+            android:textStyle="italic" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

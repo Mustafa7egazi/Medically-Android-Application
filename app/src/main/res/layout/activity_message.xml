@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MessageActivity">
+
+    <TextView
+        android:fontFamily="@font/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comming soon ..."
+        android:textAlignment="center"
+        android:textColor="?attr/text_color"
+        android:textSize="18sp" />
+
+    <EditText
+        android:enabled="false"
+        android:hint="Enter your message"
+        android:textAlignment="center"
+        android:id="@+id/messageBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="@dimen/car_ui_app_styled_dialog_height" />
+
+    <Button
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FF9800"
+        android:onClick="messageClick"
+        android:text="Send message" />
+
+
+</LinearLayout>
