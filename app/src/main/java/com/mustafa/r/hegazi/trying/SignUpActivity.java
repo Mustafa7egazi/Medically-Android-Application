@@ -68,6 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            ActionTakeActivity.registeringUserIs = _userName;
                             dbHelper.registerUser(_userName,_password,_email);
                             Toast.makeText(SignUpActivity.this, "Success Registration", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignUpActivity.this,ActionTakeActivity.class));

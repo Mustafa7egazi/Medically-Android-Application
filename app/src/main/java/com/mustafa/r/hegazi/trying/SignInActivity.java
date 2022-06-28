@@ -55,8 +55,6 @@ public class SignInActivity extends AppCompatActivity {
         password.setText(pass);
 
         clickActions();
-
-
     }
 
     private void clickActions()
@@ -74,6 +72,7 @@ public class SignInActivity extends AppCompatActivity {
                 {
                     if(dbHelper.checkUserRegistered(_username,_password))
                     {
+                        ActionTakeActivity.registeringUserIs = _username;
                         if (rememberMe.isChecked())
                         {
                             sharedPrefWrite(_username,_password);
@@ -115,7 +114,7 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private void sharedPrefWrite(String username, String password) {
+    public void sharedPrefWrite(String username, String password) {
         SharedPreferences shared = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = shared.edit();
         editor.putString("username",username);
@@ -141,11 +140,11 @@ public class SignInActivity extends AppCompatActivity {
     {
         returnData = new sharedString();
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        returnData.setUsername(sharedPreferences.getString("username",""));
-        returnData.setPassword(sharedPreferences.getString("password",""));
+        returnData.setUsername(sharedPreferences.getString("username",null));
+        returnData.setPassword(sharedPreferences.getString("password",null));
         return returnData;
     }
-    public class sharedString
+    public static class sharedString
     {
         String username;
         String password;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clinically</string>
+    <string name="app_name">Medically</string>
     <string name="add">Add a new patient</string>
     <string name="explore">Explore all registered patients</string>
 

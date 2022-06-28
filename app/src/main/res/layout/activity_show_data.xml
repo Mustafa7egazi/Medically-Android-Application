@@ -3,14 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/custom_background"
     tools:context=".ShowDataActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NO Data"
+        android:textStyle="bold"
+        android:fontFamily="@font/title"
+        android:gravity="center"
+        android:id="@+id/noData"
+        android:visibility="gone"
+        />
 
     <ListView
         android:id="@+id/lstView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="?attr/background_color"
         android:elevation="15dp"
         android:outlineSpotShadowColor="?attr/shadow_Color" />
 

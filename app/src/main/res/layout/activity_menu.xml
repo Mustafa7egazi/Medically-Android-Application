@@ -63,7 +63,7 @@
                     android:layout_below="@+id/usrName"
                     android:text="Dark Mode soon .."
                     android:textAlignment="center"
-                    android:textColor="?attr/text_color"
+                    android:textColor="#706E6E"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SwitchCompat

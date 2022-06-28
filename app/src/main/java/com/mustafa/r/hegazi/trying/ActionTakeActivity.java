@@ -31,7 +31,8 @@ public class ActionTakeActivity extends AppCompatActivity {
     Button datePick, save, reset;
     DBHelper dbHelper;
     DBHelper.PatientDB patientDB;
-    SwitchCompat switchCompat;
+    public static String registeringUserIs = "";
+    //SwitchCompat switchCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class ActionTakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_take);
 
-        switchCompat = findViewById(R.id.bt_switch);
+       // switchCompat = findViewById(R.id.bt_switch);
 
 
         initViews();

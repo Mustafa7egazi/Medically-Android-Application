@@ -1,13 +1,10 @@
 package com.mustafa.r.hegazi.trying;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,7 +13,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
-        super(context, "usersDB", null, 2);
+        super(context, "usersDB", null, 3);
 
     }
 
@@ -114,13 +111,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static class PatientDB extends SQLiteOpenHelper{
         public PatientDB(@Nullable Context context) {
-            super(context, "patientsDB", null,2);
+            super(context, "patientsDB", null,4);
         }
 
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
             String sql2="create table patients(_id integer primary key autoincrement,name varchar(20)," +
-                    "phone varchar(11), natId varchar(14),consultation TEXT,date varchar(12),gender varchar(10))";
+                    "phone varchar(11), natId varchar(14),consultation TEXT,date varchar(12)," +
+                    "gender varchar(10),registeringUser varchar(50))";
             sqLiteDatabase.execSQL(sql2);
         }
 
@@ -145,7 +143,8 @@ public class DBHelper extends SQLiteOpenHelper {
             }
         }
 
-        public boolean insertPatient(String name , String phone , String natId, String consultation ,String date,String gender )
+        public boolean insertPatient(String name , String phone , String natId, String consultation
+                ,String date,String gender)
         {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
@@ -155,6 +154,7 @@ public class DBHelper extends SQLiteOpenHelper {
             values.put("consultation",consultation);
             values.put("date",date);
             values.put("gender",gender);
+            values.put("registeringUser",ActionTakeActivity.registeringUserIs);
             long row = db.insert("patients",null,values);
             db.close();
             if (row != -1)
@@ -212,7 +212,9 @@ public class DBHelper extends SQLiteOpenHelper {
         public ArrayList<custom_list> getAllData(){
             ArrayList<custom_list> arrayList = new ArrayList<>();
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res = db.rawQuery("SELECT * FROM patients",null);
+
+            Cursor res = db.rawQuery("SELECT * FROM patients where registeringUser=?",
+                    new String[]{ActionTakeActivity.registeringUserIs});
             while (res.moveToNext()){
                 String name = res.getString(1);
                 String phone = res.getString(2);
@@ -226,5 +228,6 @@ public class DBHelper extends SQLiteOpenHelper {
             return arrayList;
         }
     }
+
 
 }
