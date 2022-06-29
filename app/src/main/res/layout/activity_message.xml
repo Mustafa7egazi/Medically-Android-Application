@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Comming soon ..."
         android:textAlignment="center"
-        android:textColor="?attr/text_color"
         android:textSize="18sp" />
 
     <EditText
@@ -30,9 +29,9 @@
         android:enabled="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FF9800"
-        android:onClick="messageClick"
-        android:text="Send message" />
+       android:background="@drawable/btn_back_outlined"
+        android:textColor="#FF9800"
+        android:text="    Send message    " />
 
 
 </LinearLayout>

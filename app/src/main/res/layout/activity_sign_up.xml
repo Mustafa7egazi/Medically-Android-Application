@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="?attr/background_color"
         app:cardCornerRadius="7dp"
         app:cardElevation="7dp">
 
@@ -30,7 +29,6 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="?attr/background_color"
             android:paddingStart="5dp"
             android:paddingTop="1dp"
             android:paddingEnd="5dp"
@@ -125,12 +123,14 @@
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_below="@id/confirmPassTxtLayout"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/title"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/btn_custom_back"
+        android:backgroundTint="#FF9800"
         android:longClickable="true"
         android:text="Register"
         android:textColor="#FFFFFF" />
@@ -138,14 +138,14 @@
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_below="@id/registerBtn"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:fontFamily="@font/title"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_back_outlined"
+        android:backgroundTint="@color/white"
         android:text="Sign in"
-        android:textColor="#F6F5F3" />
+        android:textColor="#FF9800" />
 
 </LinearLayout>

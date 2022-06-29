@@ -8,9 +8,10 @@
     tools:context=".ShowDataActivity">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="700dp"
         android:text="NO Data"
         android:textStyle="bold"
+        android:layout_gravity="center"
         android:fontFamily="@font/title"
         android:gravity="center"
         android:id="@+id/noData"
@@ -22,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:elevation="15dp"
-        android:outlineSpotShadowColor="?attr/shadow_Color" />
+        android:elevation="15dp" />
 
 </LinearLayout>

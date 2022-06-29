@@ -21,12 +21,7 @@ public class ForgotPassActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.Theme_Dark);
-        }
-        else {
-            setTheme(R.style.Theme_Light);
-        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass);
         switchCompat = findViewById(R.id.bt_switch);

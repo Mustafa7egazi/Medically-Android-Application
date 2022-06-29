@@ -6,17 +6,15 @@
     tools:context=".ActionTakeActivity">
 
     <item
+
         android:id="@+id/home"
-        android:icon="@drawable/home_item_icon"
+        android:icon="@drawable/ic_home"
         app:showAsAction="always"
         android:title="Home" />
 
     <item
         android:id="@+id/sideMenu"
-        android:icon="@drawable/ic_side_menu"
+        android:icon="@drawable/ic_assignment"
         app:showAsAction="always"
         android:title="side menu" />
-
-
-
 </menu>

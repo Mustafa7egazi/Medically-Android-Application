@@ -8,8 +8,7 @@
         android:icon="@mipmap/logo_min"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_min"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Light">
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
             android:name=".MessageActivity"
             android:exported="false" />

@@ -10,25 +10,22 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="?attr/background_color"
-        android:elevation="10dp"
-        android:outlineSpotShadowColor="?attr/shadow_Color">
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/imPhoto"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:layout_marginStart="10dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTintMode="add"
-            android:src="@drawable/profile1" />
+            android:src="@mipmap/logo_min" />
 
         <TextView
             android:id="@+id/usrName"
@@ -40,9 +37,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="@font/title"
             android:text="Medically"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textColor="#FF9800"
             android:textSize="50dp"
             android:textStyle="bold|italic" />
@@ -53,46 +50,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/usrName">
-            <TableRow
-                android:layout_marginBottom="20dp">
-                <TextView
-                    android:id="@+id/darkMode"
-                    style="@android:style/TextAppearance.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/usrName"
-                    android:text="Dark Mode soon .."
-                    android:textAlignment="center"
-                    android:textColor="#706E6E"
-                    android:textStyle="bold" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:enabled="false"
-                    android:id="@+id/bt_switch"
-                    style="@android:style/TextAppearance.Holo.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/darkMode"
-                    android:layout_toRightOf="@+id/darkMode"
-                    android:backgroundTint="#2196F3"
-                    android:textColor="@color/white"
-                    android:textStyle="italic" />
-            </TableRow>
-            <TableRow
-                android:layout_marginBottom="10dp">
+            <TableRow android:layout_marginBottom="10dp">
+
                 <TextView
                     android:id="@+id/StartMessage"
                     style="@android:style/TextAppearance.Large"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/bt_switch"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="50dp"
+                   android:layout_marginRight="60dp"
+                    android:gravity="center"
                     android:text="Message"
-                    android:textAlignment="center"
-                    android:textColor="?attr/text_color"
                     android:textStyle="bold" />
 
                 <Button
@@ -102,26 +72,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/StartMessage"
-                    android:backgroundTint="#FF9800"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#FF9800"
                     android:onClick="messageBtnClick"
                     android:text="  SHOW   "
                     android:textColor="@color/white"
-                    android:textStyle="italic" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </TableRow>
-            <TableRow
-                android:layout_marginBottom="10dp">
+
+            <TableRow android:layout_marginBottom="10dp">
+
                 <TextView
                     android:id="@+id/contact"
                     style="@android:style/TextAppearance.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact us ?"
-                    android:textAlignment="center"
-                    android:textColor="?attr/text_color"
-                    android:textStyle="bold"
-                    />
+                    android:gravity="center"
+                    android:layout_marginRight="60dp"
+                    android:text="Contact us"
+                    android:textStyle="bold" />
 
                 <Button
 
@@ -129,26 +100,28 @@
                     style="@android:style/TextAppearance.Holo.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
                     android:layout_below="@id/help"
+                    android:layout_marginStart="5dp"
                     android:layout_toRightOf="@id/contact"
                     android:backgroundTint="#FF9800"
                     android:onClick="onclickAC"
                     android:text="Contact"
                     android:textColor="@color/white"
-                    android:textStyle="italic" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </TableRow>
-            <TableRow
-                android:layout_marginBottom="10dp">
+
+            <TableRow android:layout_marginBottom="10dp">
+
                 <TextView
                     android:id="@+id/help"
                     style="@android:style/TextAppearance.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="60dp"
                     android:text="Help"
-                    android:textAlignment="center"
-                    android:textColor="?attr/text_color"
                     android:textStyle="bold"
 
                     />
@@ -160,33 +133,43 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
                     android:layout_toRightOf="@+id/help"
                     android:backgroundTint="#FF9800"
-                    android:layout_marginStart="5dp"
                     android:onClick="onclickHE"
                     android:text="   Help    "
                     android:textColor="@color/white"
-                    android:textStyle="italic" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </TableRow>
         </TableLayout>
 
         <Button
             android:id="@+id/logOutBtn"
             style="@android:style/TextAppearance.Holo.Large"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="#ECE8E8"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="#FF5722"
+            android:fontFamily="@font/title"
             android:onClick="logOutClick"
             android:shadowColor="#FF9800"
             android:shadowRadius="10"
             android:text="LOG OUT!"
-            android:textColor="#FF9800"
+            android:textColor="#FFFFFF"
             android:textStyle="italic" />
 
     </RelativeLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:background="#FFFFFF"
+        android:id="@+id/menuBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".8"
+        app:itemIconTint="#8A8787"
+        app:itemTextColor="#8A8787"
+        app:menu="@menu/nav_menu_bar"/>
 
 </LinearLayout>

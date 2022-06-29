@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
-        android:background="?attr/background_color"
         app:cardCornerRadius="7dp"
+        android:background="@color/white"
         app:cardElevation="7dp">
 
         <RelativeLayout
@@ -31,7 +31,6 @@
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="?attr/background_color"
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
 
@@ -117,7 +116,7 @@
                 android:layout_centerHorizontal="true"
                 android:clickable="true"
                 android:text="Forgot password?"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textColor="#2196F3"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -128,31 +127,26 @@
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:fontFamily="@font/title"
         android:layout_below="@id/passTxtLayout"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/btn_custom_back"
+        android:backgroundTint="#FF9800"
         android:text="Login"
         android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_below="@id/loginBtn"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:fontFamily="@font/title"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/btn_back_outlined"
+        android:backgroundTint="@color/white"
         android:text="Sign up"
-        android:textColor="#FFFFFF" />
-
-    <ProgressBar
-        android:id="@+id/prog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/signUpBtn" />
+        android:textColor="#FF9800" />
 </LinearLayout>

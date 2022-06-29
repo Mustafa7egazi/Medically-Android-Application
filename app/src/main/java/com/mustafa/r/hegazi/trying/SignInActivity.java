@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 
 public class SignInActivity extends AppCompatActivity {
-    ProgressBar prog1 ;
     Button signUp,login;
     TextView forgotPass;
     DBHelper dbHelper;
@@ -45,7 +44,6 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         initViews();
-        prog1.setVisibility(View.GONE);
 
 
         sharedString data = sharedPrefRead();
@@ -81,12 +79,6 @@ public class SignInActivity extends AppCompatActivity {
                         else if (doNotRemember.isChecked())
                         {
                             sharedPrefWrite("","");
-                        }
-                        prog1.setVisibility(View.VISIBLE);
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
                         startActivity(new Intent(SignInActivity.this, ActionTakeActivity.class));
                     }
@@ -132,7 +124,6 @@ public class SignInActivity extends AppCompatActivity {
         password = findViewById(R.id.loginPassword);
         rememberMe = findViewById(R.id.rememberMe);
         doNotRemember = findViewById(R.id.notRememberMe);
-        prog1 =  findViewById(R.id.prog);
         //switchCompat = findViewById(R.id.bt_switch);
     }
 

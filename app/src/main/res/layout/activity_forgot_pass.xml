@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="?attr/background_color"
         app:cardCornerRadius="7dp"
         app:cardElevation="7dp">
 
@@ -30,7 +29,6 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="?attr/background_color"
             android:paddingStart="5dp"
             android:paddingTop="20dp"
             android:paddingEnd="5dp"
@@ -112,6 +110,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:fontFamily="@font/title"
         android:background="@drawable/btn_custom_back"
         android:text="Change"
         android:textColor="@color/white" />

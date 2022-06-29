@@ -44,7 +44,7 @@
         android:orientation="vertical"
         android:gravity="bottom">
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:background="@color/white"
+            android:background="#FFFFFF"
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="70dp"
