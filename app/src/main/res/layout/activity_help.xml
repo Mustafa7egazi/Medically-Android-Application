@@ -20,33 +20,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="This application helps doctors in their work ,
- as it allows each doctor to create his own account on our application ,
- know the patient data he has had for years ,
- also  it allows him to add new patient data or modify the data of a patient
-  and allows the possibility of communicating with the patient at any time"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold|italic" />
+        android:text="@string/help_body"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:padding="10dp"
-        android:text="For any feedback contact us on :- "
+        android:paddingLeft="20dp"
+        android:text="@string/feedbackHeader"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FF9800"
-        android:textStyle="bold|italic" />
+        android:textColor="#FF9800"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:paddingLeft="30dp"
-        android:text="+0263548276468
-                                                                       medically@gmail.com"
+        android:paddingLeft="20dp"
+        android:text="Mustafareda3210@gmail.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="#0037FF"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"/>
 
 </LinearLayout>

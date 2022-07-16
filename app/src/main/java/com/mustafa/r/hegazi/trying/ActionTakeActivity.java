@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class ActionTakeActivity extends AppCompatActivity {
     HomeFragment homeFragment;
     AddPersonFragment addPersonFragment;
+    MenuFragment menuFragment;
     BottomNavigationView navigationView;
     EditText patientName, phone, nationalId, consultation, date;
     RadioButton genderMale, genderFemale;
@@ -43,6 +44,7 @@ public class ActionTakeActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         addPersonFragment = new AddPersonFragment();
+        menuFragment = new MenuFragment();
         androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_view, HomeFragment.class, null)
@@ -60,7 +62,9 @@ public class ActionTakeActivity extends AppCompatActivity {
                     }
 
                     case R.id.sideMenu: {
-                        startActivity(new Intent(ActionTakeActivity.this, MenuActivity.class));
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, menuFragment, null)
+                                .commit();
                         return (true);
                     }
                 }

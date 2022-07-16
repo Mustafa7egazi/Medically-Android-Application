@@ -30,9 +30,6 @@
             android:name=".HelpActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".ShowDataActivity"
             android:exported="false" />
         <activity
