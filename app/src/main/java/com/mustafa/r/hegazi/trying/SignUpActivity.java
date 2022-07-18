@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button logIn,register;
     EditText userName , email , password , confirmPassword;
     DBHelper dbHelper;
-    SwitchCompat switchCompat ;
+
 
 
     @Override
@@ -26,6 +27,9 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         initViews();
+        // make password as dots by default
+        password.setTransformationMethod(new PasswordTransformationMethod());
+        confirmPassword.setTransformationMethod(new PasswordTransformationMethod());
         clickActions();
     }
 
@@ -40,8 +44,8 @@ public class SignUpActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String _userName = userName.getText().toString();
-                String _email = email.getText().toString();
+                String _userName = userName.getText().toString().toLowerCase();
+                String _email = email.getText().toString().toLowerCase();
                 String _password = password.getText().toString();
                 String _confirmPassword = confirmPassword.getText().toString();
                 if(TextUtils.isEmpty(_userName) || TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password) || TextUtils.isEmpty(_confirmPassword))
@@ -63,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
                         else
                         {
                             ActionTakeActivity.registeringUserIs = _userName;
+                            ActionTakeActivity.registeringEmail = _email;
                             dbHelper.registerUser(_userName,_password,_email);
                             Toast.makeText(SignUpActivity.this, "Success Registration", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignUpActivity.this,ActionTakeActivity.class));

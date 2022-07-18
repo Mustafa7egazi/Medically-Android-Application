@@ -37,7 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:paddingLeft="20dp"
-        android:text="Mustafareda3210@gmail.com"
+        android:text="Click to send: Mustafareda3210@gmail.com"
+        android:id="@+id/emailTo"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="#0037FF"
         android:textStyle="bold|italic"/>

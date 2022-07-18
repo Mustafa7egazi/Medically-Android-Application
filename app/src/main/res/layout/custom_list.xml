@@ -3,8 +3,8 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/custom_background"
     android:orientation="vertical"
+    android:background="@color/white"
     android:paddingStart="20dp">
 
 
@@ -63,6 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:textColor="#666"
         android:textAlignment="textStart" />
 
 

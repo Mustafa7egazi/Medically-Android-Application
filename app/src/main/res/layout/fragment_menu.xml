@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
     tools:context=".MenuFragment">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="367dp"
+        android:layout_height="595dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -19,11 +20,10 @@
         <ImageView
             android:id="@+id/imPhoto"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@mipmap/logo_min" />
+            android:src="@mipmap/doctor" />
+
 
         <TextView
             android:id="@+id/usrName"
@@ -32,9 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imPhoto"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
             android:text="Medically"
@@ -42,12 +40,33 @@
             android:textSize="30dp"
             android:textStyle="italic" />
 
+        <TextView
+            android:id="@+id/emailOfUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usrName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:text="email" />
+
+        <TextView
+            android:id="@+id/deleteAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailOfUser"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="Delete Account!"
+            android:textColor="#001FCA" />
+
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/usrName">
+            android:layout_centerHorizontal="true"
+            android:paddingStart="20dp"
+            android:layout_below="@id/deleteAcc">
 
             <TableRow android:layout_marginBottom="10dp">
 
@@ -86,8 +105,8 @@
                     style="@android:style/TextAppearance.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginRight="60dp"
+                    android:gravity="center"
                     android:text="Contact us"
                     android:textStyle="bold" />
 
@@ -115,8 +134,8 @@
                     style="@android:style/TextAppearance.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginRight="60dp"
+                    android:gravity="center"
                     android:text="Help"
                     android:textStyle="bold"
 
@@ -146,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#FF5722"
             android:fontFamily="@font/title"
             android:shadowColor="#FF9800"

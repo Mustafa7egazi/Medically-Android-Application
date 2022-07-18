@@ -1,16 +1,15 @@
 package com.mustafa.r.hegazi.trying;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +22,6 @@ public class SignInActivity extends AppCompatActivity {
     EditText userOrEmail, password;
     RadioButton rememberMe,doNotRemember;
     sharedString returnData;
-//    SwitchCompat switchCompat ;
-
 
 
 
@@ -32,19 +29,11 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        /* TODO: Dark mode
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.Theme_Dark);
-        }
-        else {
-            setTheme(R.style.Theme_Light);
-        }
-        */
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         initViews();
-
+        // make password as dots by default
+        password.setTransformationMethod(new PasswordTransformationMethod());
 
         sharedString data = sharedPrefRead();
         String user = data.getUsername();
@@ -61,6 +50,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String _username = userOrEmail.getText().toString().toLowerCase();
+                String _email = userOrEmail.getText().toString().toLowerCase();
                 String _password = password.getText().toString();
                 if (TextUtils.isEmpty(_username)|| TextUtils.isEmpty(_password))
                 {
@@ -68,23 +58,39 @@ public class SignInActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    if(dbHelper.checkUserRegistered(_username,_password))
-                    {
-                        ActionTakeActivity.registeringUserIs = _username;
-                        if (rememberMe.isChecked())
-                        {
-                            sharedPrefWrite(_username,_password);
+                    if (dbHelper.checkUsername(_username) || dbHelper.checkEmail(_email)) {
+                        if (dbHelper.checkUserRegistered(_username, _email, _password)) {
 
+                            String newString = _username;
+                            newString = newString.substring(_username.length() - 3);
+                            if (newString.equals("com"))
+                            {
+                                ActionTakeActivity.registeringEmail = _username;
+                                Cursor c = dbHelper.getUsername(_password,_username);
+                                c.moveToFirst();
+                                ActionTakeActivity.registeringUserIs = c.getString(0);
+                            }
+                            else
+                            {
+                                ActionTakeActivity.registeringUserIs=_username;
+                                Cursor c = dbHelper.getEmail(_password,_username);
+                                c.moveToFirst();
+                                ActionTakeActivity.registeringEmail = c.getString(0);
+                            }
+
+                            if (rememberMe.isChecked()) {
+                                sharedPrefWrite(_username, _password);
+                            } else if (doNotRemember.isChecked()) {
+                                sharedPrefWrite("", "");
+                            }
+
+                            startActivity(new Intent(SignInActivity.this, ActionTakeActivity.class));
+                        } else {
+                            Toast.makeText(SignInActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                         }
-                        else if (doNotRemember.isChecked())
-                        {
-                            sharedPrefWrite("","");
-                        }
-                        startActivity(new Intent(SignInActivity.this, ActionTakeActivity.class));
                     }
-                    else
-                    {
-                        Toast.makeText(SignInActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    else {
+                        Toast.makeText(SignInActivity.this, "Incorrect username or email", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -124,7 +130,7 @@ public class SignInActivity extends AppCompatActivity {
         password = findViewById(R.id.loginPassword);
         rememberMe = findViewById(R.id.rememberMe);
         doNotRemember = findViewById(R.id.notRememberMe);
-        //switchCompat = findViewById(R.id.bt_switch);
+
     }
 
     private sharedString sharedPrefRead()

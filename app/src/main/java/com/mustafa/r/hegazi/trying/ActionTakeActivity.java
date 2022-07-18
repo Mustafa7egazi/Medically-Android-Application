@@ -33,6 +33,7 @@ public class ActionTakeActivity extends AppCompatActivity {
     DBHelper dbHelper;
     DBHelper.PatientDB patientDB;
     public static String registeringUserIs = "";
+    public static String registeringEmail ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

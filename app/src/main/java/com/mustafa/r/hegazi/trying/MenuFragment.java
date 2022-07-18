@@ -1,5 +1,6 @@
 package com.mustafa.r.hegazi.trying;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,19 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class MenuFragment extends Fragment {
     Button contactBtn,logOutBtn,showMessageBtn,helpBtn;
-    TextView usrName;
+    TextView usrName,email,deleteAccount;
 
-    public MenuFragment() {
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
          View v = inflater.inflate(R.layout.fragment_menu, container, false);
          contactBtn = v.findViewById(R.id.contactBtn);
@@ -29,7 +32,11 @@ public class MenuFragment extends Fragment {
         showMessageBtn = v.findViewById(R.id.showMessageBtn);
         helpBtn = v.findViewById(R.id.helpBtn);
         usrName = v.findViewById(R.id.usrName);
+        email = v.findViewById(R.id.emailOfUser);
+        deleteAccount = v.findViewById(R.id.deleteAcc);
         usrName.setText(""+ActionTakeActivity.registeringUserIs);
+        email.setText(""+ActionTakeActivity.registeringEmail);
+
 
          contactBtn.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -64,7 +71,18 @@ public class MenuFragment extends Fragment {
              }
          });
 
+         deleteAccount.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 androidx.fragment.app.FragmentManager fragmentManager = getParentFragmentManager();
+                 fragmentManager.beginTransaction()
+                         .replace(R.id.fragment_container_view, ConfirmDeleteFragment.class, null)
+                         .commit();
+             }
+         });
+
          return v;
     }
+
 
 }

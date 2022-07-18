@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
-        super(context, "usersDB", null, 3);
+        super(context, "usersDB", null, 4);
 
     }
 
@@ -56,10 +56,10 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean checkUserRegistered(String username,String password)
+    public boolean checkEmail(String email)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from users where (username =? or email=?)and password =?",new String[]{username,username,password});
+        Cursor cursor = db.rawQuery("select * from users where email =?",new String[]{email});
         if(cursor.getCount() > 0)
         {
             return true;
@@ -69,6 +69,50 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public boolean checkPassword(String password)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select username from users where password =?",new String[]{password});
+        if(cursor.getCount() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    public boolean checkUserRegistered(String username,String email,String password)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from users where (username =? or email=?)and password =?",
+                new String[]{username,email,password});
+        if(cursor.getCount() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public Cursor getUsername(String password,String email)
+
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.rawQuery("select username from users where password = ? AND email=?",new String[]{password,email});
+    }
+    public Cursor getEmail(String password,String username)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.rawQuery("select email from users where password = ? AND username=?",new String[]{password,username});
+    }
+
+
 
 
     public boolean registerUser(String username , String password , String email)
@@ -87,6 +131,11 @@ public class DBHelper extends SQLiteOpenHelper {
         {
             return false;
         }
+    }
+    public int deleteUser(String registeredUser)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        return db.delete("users","(username=? or email=?)",new String[]{ActionTakeActivity.registeringUserIs});
     }
     public boolean updatePassword(String password, String username)
     {
@@ -111,7 +160,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static class PatientDB extends SQLiteOpenHelper{
         public PatientDB(@Nullable Context context) {
-            super(context, "patientsDB", null,4);
+            super(context, "patientsDB", null,5);
         }
 
         @Override
@@ -165,6 +214,11 @@ public class DBHelper extends SQLiteOpenHelper {
             {
                 return false;
             }
+        }
+        public void deleteAllPatients(String registeringUser)
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+             db.delete("patients","registeringUser=?",new String[]{ActionTakeActivity.registeringUserIs});
         }
 
         // update patient

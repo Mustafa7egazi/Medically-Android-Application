@@ -12,10 +12,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ForgotPassActivity extends AppCompatActivity {
-    EditText username, newPassword, confirmNewPassword;
+    EditText username,email, newPassword, confirmNewPassword;
     Button saveChange;
     DBHelper dbHelper;
-    SwitchCompat switchCompat ;
+
 
 
     @Override
@@ -24,7 +24,7 @@ public class ForgotPassActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass);
-        switchCompat = findViewById(R.id.bt_switch);
+
 
 
         initViews();
@@ -35,19 +35,25 @@ public class ForgotPassActivity extends AppCompatActivity {
         saveChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String _username = username.getText().toString();
+                String _username = username.getText().toString().toLowerCase();
+                String _email = email.getText().toString().toLowerCase();
                 String _newPassword = newPassword.getText().toString();
                 String _confirmNewPassword = confirmNewPassword.getText().toString();
                 if (dbHelper.checkUsername(_username)) {
-                    if (_newPassword.equals(_confirmNewPassword)) {
-                        if (dbHelper.updatePassword(_newPassword, _username)) {
-                            Toast.makeText(ForgotPassActivity.this, "Password updated", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ForgotPassActivity.this,SignInActivity.class));
+                    if (dbHelper.checkEmail(_email)) {
+                        if (_newPassword.equals(_confirmNewPassword)) {
+                            if (dbHelper.updatePassword(_newPassword, _username)) {
+                                Toast.makeText(ForgotPassActivity.this, "Password updated", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(ForgotPassActivity.this, SignInActivity.class));
+                            } else {
+                                Toast.makeText(ForgotPassActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(ForgotPassActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPassActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(ForgotPassActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(ForgotPassActivity.this, "Incorrect Email", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
@@ -59,6 +65,7 @@ public class ForgotPassActivity extends AppCompatActivity {
 
     private void initViews() {
         username = findViewById(R.id.usernamePassReset);
+        email = findViewById(R.id.emailPassReset);
         newPassword = findViewById(R.id.newPasswordReset);
         confirmNewPassword = findViewById(R.id.confirmNewPasswordReset);
         saveChange = findViewById(R.id.savePasswordChange);
