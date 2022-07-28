@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Medically-Android-Application/app/src/main/res/drawable/back_splash_screen.xml" value="0.1" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/drawable/btn_back_outlined.xml" value="0.1" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/drawable/custom_icon_phone.xml" value="0.1455" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/drawable/custom_icon_sidemenu.xml" value="0.1455" />
@@ -24,6 +25,8 @@
         <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/activity_show_data.xml" value="0.10989583333333333" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/custom_list.xml" value="0.25" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/fragment_confirm_delete.xml" value="0.25" />
         <entry key="..\:/Medically-Android-Application/app/src/main/res/layout/fragment_menu.xml" value="0.264" />

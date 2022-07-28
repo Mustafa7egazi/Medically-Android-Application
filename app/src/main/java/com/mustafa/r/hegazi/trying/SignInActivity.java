@@ -1,6 +1,8 @@
 package com.mustafa.r.hegazi.trying;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,6 +11,7 @@ import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -20,8 +23,9 @@ public class SignInActivity extends AppCompatActivity {
     TextView forgotPass;
     DBHelper dbHelper;
     EditText userOrEmail, password;
-    RadioButton rememberMe,doNotRemember;
+    CheckBox rememberMe;
     sharedString returnData;
+
 
 
 
@@ -31,6 +35,7 @@ public class SignInActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
         initViews();
         // make password as dots by default
         password.setTransformationMethod(new PasswordTransformationMethod());
@@ -38,8 +43,15 @@ public class SignInActivity extends AppCompatActivity {
         sharedString data = sharedPrefRead();
         String user = data.getUsername();
         String pass= data.getPassword();
-        userOrEmail.setText(user);
-        password.setText(pass);
+        if (user !=null && pass !=null)
+        {
+           Cursor c =  dbHelper.getEmail(pass,user);
+           c.moveToFirst();
+           ActionTakeActivity.registeringEmail = c.getString(0);
+           ActionTakeActivity.registeringUserIs = user;
+            startActivity(new Intent(getApplicationContext(),ActionTakeActivity.class));
+        }
+
 
         clickActions();
     }
@@ -80,8 +92,6 @@ public class SignInActivity extends AppCompatActivity {
 
                             if (rememberMe.isChecked()) {
                                 sharedPrefWrite(_username, _password);
-                            } else if (doNotRemember.isChecked()) {
-                                sharedPrefWrite("", "");
                             }
 
                             startActivity(new Intent(SignInActivity.this, ActionTakeActivity.class));
@@ -112,13 +122,6 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    public void sharedPrefWrite(String username, String password) {
-        SharedPreferences shared = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = shared.edit();
-        editor.putString("username",username);
-        editor.putString("password",password);
-        editor.commit();
-    }
 
     private void initViews() {
 
@@ -129,17 +132,31 @@ public class SignInActivity extends AppCompatActivity {
         userOrEmail = findViewById(R.id.loginUsername);
         password = findViewById(R.id.loginPassword);
         rememberMe = findViewById(R.id.rememberMe);
-        doNotRemember = findViewById(R.id.notRememberMe);
 
     }
+    public void sharedPrefWrite(String username, String password) {
+        SharedPreferences shared = getSharedPreferences("rememberMe",MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putString("username",username);
+        editor.putString("password",password);
+        editor.commit();
+    }
 
-    private sharedString sharedPrefRead()
+    public sharedString sharedPrefRead()
     {
         returnData = new sharedString();
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("rememberMe",MODE_PRIVATE);
         returnData.setUsername(sharedPreferences.getString("username",null));
         returnData.setPassword(sharedPreferences.getString("password",null));
         return returnData;
+    }
+    public static void removeFromShared(Context context)
+    {
+        SharedPreferences pref = context.getSharedPreferences("rememberMe",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.remove("username");
+        editor.remove("password");
+        editor.commit();
     }
     public static class sharedString
     {

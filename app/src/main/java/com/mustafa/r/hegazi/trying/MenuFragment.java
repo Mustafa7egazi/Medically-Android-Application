@@ -2,23 +2,23 @@ package com.mustafa.r.hegazi.trying;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
 
 
 public class MenuFragment extends Fragment {
     Button contactBtn,logOutBtn,showMessageBtn,helpBtn;
     TextView usrName,email,deleteAccount;
+
+
 
 
     @Override
@@ -49,6 +49,7 @@ public class MenuFragment extends Fragment {
          logOutBtn.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
+                 SignInActivity.removeFromShared(getContext());
                  Intent intent = new Intent(getActivity(), SignInActivity.class);
                  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                  startActivity(intent);

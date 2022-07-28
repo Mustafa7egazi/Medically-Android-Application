@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#CA7A03"
                     android:text="Male" />
 
                 <RadioButton
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:textColor="@color/purple_500"
+                    android:textColor="#CA7A03"
                     android:text="Female" />
             </RadioGroup>
 

@@ -16,5 +16,5 @@
         android:id="@+id/sideMenu"
         android:icon="@drawable/ic_assignment"
         app:showAsAction="always"
-        android:title="side menu" />
+        android:title="Options" />
 </menu>
