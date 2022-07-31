@@ -13,14 +13,14 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
-        super(context, "usersDB", null, 4);
+        super(context, "usersDB", null, 7);
 
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "create table users(_id integer primary key autoincrement,username varchar(20) UNIQUE,email TEXT,password TEXT)";
+        String sql = "create table users(fullname TEXT,username varchar(20) UNIQUE,email TEXT,password TEXT)";
         sqLiteDatabase.execSQL(sql);
     }
 
@@ -42,10 +42,23 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public boolean checkFullname(String fullname)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select fullname from users where fullname =?",new String[]{fullname});
+        if(cursor.getCount() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public boolean checkUsername(String username)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from users where username =?",new String[]{username});
+        Cursor cursor = db.rawQuery("select username from users where username =?",new String[]{username});
         if(cursor.getCount() > 0)
         {
             return true;
@@ -59,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean checkEmail(String email)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from users where email =?",new String[]{email});
+        Cursor cursor = db.rawQuery("select email from users where email =?",new String[]{email});
         if(cursor.getCount() > 0)
         {
             return true;
@@ -70,7 +83,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean checkPassword(String password)
+    public boolean checkPasswordForDeleteAccount(String password)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select username from users where password =?",new String[]{password});
@@ -100,25 +113,34 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getUsername(String password,String email)
+    public Cursor getFullname(String userOrEmailInput)
 
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.rawQuery("select username from users where password = ? AND email=?",new String[]{password,email});
+        return db.rawQuery("select fullname from users where (username=? or email=?)",new String[]{userOrEmailInput,userOrEmailInput});
     }
-    public Cursor getEmail(String password,String username)
+
+    public Cursor getUsername(String fullname)
+
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.rawQuery("select email from users where password = ? AND username=?",new String[]{password,username});
+        return db.rawQuery("select username from users where fullname=?",new String[]{fullname});
+    }
+
+    public Cursor getEmail(String fullname)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.rawQuery("select email from users where fullname=?",new String[]{fullname});
     }
 
 
 
 
-    public boolean registerUser(String username , String password , String email)
+    public boolean registerUser(String fullname,String username , String password , String email)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put("fullname",fullname);
         values.put("username",username.toLowerCase());
         values.put("password",password);
         values.put("email",email);
@@ -160,7 +182,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static class PatientDB extends SQLiteOpenHelper{
         public PatientDB(@Nullable Context context) {
-            super(context, "patientsDB", null,5);
+            super(context, "patientsDB", null,7);
         }
 
         @Override
@@ -277,6 +299,22 @@ public class DBHelper extends SQLiteOpenHelper {
                 String disease_history = res.getString(5);
                 String gender = res.getString(6);
                 custom_list customList = new custom_list(natId,name,phone,disease,disease_history,gender);
+                arrayList.add(customList);
+            }
+            return arrayList;
+        }
+
+        public ArrayList<custom_list2> getNameAndPhone(){
+            ArrayList<custom_list2> arrayList = new ArrayList<>();
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor res = db.rawQuery("SELECT name,phone FROM patients where registeringUser=?",
+                    new String[]{ActionTakeActivity.registeringUserIs});
+            while (res.moveToNext()){
+                String name = res.getString(0);
+                String phone = res.getString(1);
+
+                custom_list2 customList = new custom_list2(name,phone);
                 arrayList.add(customList);
             }
             return arrayList;

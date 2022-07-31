@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
     Button logIn,register;
-    EditText userName , email , password , confirmPassword;
+    EditText fullName, userName , email , password , confirmPassword;
     DBHelper dbHelper;
 
 
@@ -44,11 +44,24 @@ public class SignUpActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String _fullname = fullName.getText().toString();
                 String _userName = userName.getText().toString().toLowerCase();
                 String _email = email.getText().toString().toLowerCase();
                 String _password = password.getText().toString();
                 String _confirmPassword = confirmPassword.getText().toString();
-                if(TextUtils.isEmpty(_userName) || TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password) || TextUtils.isEmpty(_confirmPassword))
+
+                // count number of names in fullname
+                int count = 1;
+                for (int i = 0; i < _fullname.length() - 1; i++)
+                {
+                    if ((_fullname.charAt(i) == ' ') && (_fullname.charAt(i + 1) != ' '))
+                    {
+                        count++;
+                    }
+                }
+                // processing checking validity
+                if(TextUtils.isEmpty(_fullname)||TextUtils.isEmpty(_userName) || TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password) || TextUtils.isEmpty(_confirmPassword))
                 {
                     Toast.makeText(SignUpActivity.this, "All fields required", Toast.LENGTH_SHORT).show();
                 }
@@ -56,21 +69,32 @@ public class SignUpActivity extends AppCompatActivity {
                 {
                     if (!_password.equals(_confirmPassword))
                     {
-                        Toast.makeText(SignUpActivity.this, "Passwords does not match", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        if(dbHelper.checkUserExist(_userName,_email))
+                        if (dbHelper.checkFullname(_fullname))
                         {
-                            Toast.makeText(SignUpActivity.this, "user already exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "There exist name matching, change your last name", Toast.LENGTH_SHORT).show();
+                        }else if (count != 3){
+                            Toast.makeText(SignUpActivity.this, "Fullname must have exactly 3 names ", Toast.LENGTH_SHORT).show();
                         }
-                        else
-                        {
-                            ActionTakeActivity.registeringUserIs = _userName;
-                            ActionTakeActivity.registeringEmail = _email;
-                            dbHelper.registerUser(_userName,_password,_email);
-                            Toast.makeText(SignUpActivity.this, "Success Registration", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignUpActivity.this,ActionTakeActivity.class));
+                        else{
+                            if (dbHelper.checkUserExist(_userName, _email)) {
+                                Toast.makeText(SignUpActivity.this, "user already exist", Toast.LENGTH_SHORT).show();
+                            } else {
+                                if (_password.length()<8 && _confirmPassword.length()<8)
+                                {
+                                    Toast.makeText(SignUpActivity.this, "Password must be 8 chars at least", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    ActionTakeActivity.registeringUserIs = _userName;
+                                    ActionTakeActivity.registeringEmail = _email;
+                                    dbHelper.registerUser(_fullname, _userName, _password, _email);
+                                    Toast.makeText(SignUpActivity.this, "Success Registration", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(SignUpActivity.this, ActionTakeActivity.class));
+                                }
+                            }
                         }
                     }
                 }
@@ -81,6 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void initViews() {
         logIn = findViewById(R.id.loginBtn);
         register = findViewById(R.id.registerBtn);
+        fullName = findViewById(R.id.registerFullName);
         userName = findViewById(R.id.registerUsername);
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerPassword);

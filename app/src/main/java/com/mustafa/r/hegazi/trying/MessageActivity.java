@@ -1,32 +1,37 @@
 package com.mustafa.r.hegazi.trying;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MessageActivity extends AppCompatActivity {
-    SwitchCompat switchCompat ;
+    EditText messageBody;
+    Button select;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //TODO: Dark mode
-//        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-//            setTheme(R.style.Theme_Dark);
-//        }
-//        else {
-//            setTheme(R.style.Theme_Light);
-//        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+
+        messageBody = findViewById(R.id.messageBody);
+        select = findViewById(R.id.selectToSendBtn);
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MessageActivity.this, SelectContact.class);
+                intent.putExtra("message", messageBody.getText().toString());
+                if (TextUtils.isEmpty(messageBody.getText().toString())) {
+                    Toast.makeText(MessageActivity.this, "Please, enter your message\nbefore selecting a contact", Toast.LENGTH_LONG).show();
+                } else {
+                    startActivity(intent);
+                }
+            }
+        });
     }
-    // TODO: Messaging functionality
-//    public void messageClick(View v)
-//    {
-//        EditText message = findViewById(R.id.messageBody);
-//        Toast.makeText(this, message.getText().toString(), Toast.LENGTH_SHORT).show();
-//    }
 }

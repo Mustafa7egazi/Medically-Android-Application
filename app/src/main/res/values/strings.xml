@@ -6,5 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="help_body">This application helps doctors at their work as it allows them to create their own account, know the patient data that have already been stored, also allows to add new patient data or modify the data of a patient by entering data they want but write the same national id for that person or application will store data as a new patient, and allows the possibility of communicating with the patient at any time</string>
     <string name="feedbackHeader">For any feedback contact us on :-</string>
+    <string name="note_message">Note! welcome text is added by default, you just step into the crux.</string>
 
 </resources>

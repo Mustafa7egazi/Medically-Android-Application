@@ -1,9 +1,13 @@
 package com.mustafa.r.hegazi.trying;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -18,20 +22,15 @@ public class ShowDataActivity extends AppCompatActivity {
     ListView lst;
     adapter adapter;
     ArrayList<custom_list> arrayList;
-    SwitchCompat switchCompat ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-//            setTheme(R.style.Theme_Dark);
-//        }
-//        else {
-//            setTheme(R.style.Theme_Light);
-//        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_data);
         lst = findViewById(R.id.lstView);
         arrayList = new ArrayList<>();
         showDataInListView();
+
     }
 
     private void showDataInListView() {

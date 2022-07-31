@@ -18,4 +18,12 @@ public class custom_list {
         this.disease_history = disease_history;
         this.gender = gender;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
 }

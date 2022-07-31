@@ -13,10 +13,12 @@ public class adapter extends BaseAdapter {
     Context context;
     ArrayList<custom_list> arrayList;
 
+
     public adapter(Context context, ArrayList<custom_list> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
+
 
     @Override
     public int getCount() {

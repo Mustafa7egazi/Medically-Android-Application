@@ -2,6 +2,7 @@ package com.mustafa.r.hegazi.trying;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +26,12 @@ public class SignInActivity extends AppCompatActivity {
     CheckBox rememberMe;
     sharedString returnData;
 
+    public static String registeringFullname="";
 
 
 
+
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -45,13 +48,20 @@ public class SignInActivity extends AppCompatActivity {
         String pass= data.getPassword();
         if (user !=null && pass !=null)
         {
-           Cursor c =  dbHelper.getEmail(pass,user);
-           c.moveToFirst();
-           ActionTakeActivity.registeringEmail = c.getString(0);
-           ActionTakeActivity.registeringUserIs = user;
+            Cursor fullNameCursor = dbHelper.getFullname(user);
+            if( fullNameCursor != null && fullNameCursor.moveToFirst()){
+                registeringFullname = fullNameCursor.getString(fullNameCursor.getColumnIndex("fullname"));
+                fullNameCursor.close();
+                Cursor emailCursor =  dbHelper.getEmail(registeringFullname);
+                if(emailCursor!=null && emailCursor.moveToFirst())
+                {
+                    ActionTakeActivity.registeringEmail = emailCursor.getString(emailCursor.getColumnIndex("email"));
+                    emailCursor.close();
+                }
+            }
+            ActionTakeActivity.registeringUserIs = user;
             startActivity(new Intent(getApplicationContext(),ActionTakeActivity.class));
         }
-
 
         clickActions();
     }
@@ -59,8 +69,14 @@ public class SignInActivity extends AppCompatActivity {
     private void clickActions()
     {
         login.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
             @Override
             public void onClick(View view) {
+                Cursor cursor = dbHelper.getFullname(userOrEmail.getText().toString().toLowerCase());
+                if( cursor != null && cursor.moveToFirst() ){
+                    registeringFullname = cursor.getString(cursor.getColumnIndex("fullname"));
+                    cursor.close();
+                }
                 String _username = userOrEmail.getText().toString().toLowerCase();
                 String _email = userOrEmail.getText().toString().toLowerCase();
                 String _password = password.getText().toString();
@@ -72,23 +88,34 @@ public class SignInActivity extends AppCompatActivity {
                 {
                     if (dbHelper.checkUsername(_username) || dbHelper.checkEmail(_email)) {
                         if (dbHelper.checkUserRegistered(_username, _email, _password)) {
+                            Cursor c1 = dbHelper.getUsername(registeringFullname);
+                            Cursor c2 = dbHelper.getEmail(registeringFullname);
+                            if(c1 != null && c1.moveToFirst() && c2 != null && c2.moveToFirst())
+                            {
+                                ActionTakeActivity.registeringUserIs = c1.getString(c1.getColumnIndex("username"));
+                                ActionTakeActivity.registeringEmail = c2.getString(c2.getColumnIndex("email"));
+                                c1.close();
+                                c2.close();
+                            }
 
-                            String newString = _username;
-                            newString = newString.substring(_username.length() - 3);
-                            if (newString.equals("com"))
-                            {
-                                ActionTakeActivity.registeringEmail = _username;
-                                Cursor c = dbHelper.getUsername(_password,_username);
-                                c.moveToFirst();
-                                ActionTakeActivity.registeringUserIs = c.getString(0);
-                            }
-                            else
-                            {
-                                ActionTakeActivity.registeringUserIs=_username;
-                                Cursor c = dbHelper.getEmail(_password,_username);
-                                c.moveToFirst();
-                                ActionTakeActivity.registeringEmail = c.getString(0);
-                            }
+//                            String newString = _username;
+//                            newString = newString.substring(_username.length() - 3);
+//                            if (newString.equals("com"))
+//                            {
+//                                ActionTakeActivity.registeringEmail = _username;
+//                                Cursor c = dbHelper.getUsername(registeringFullname);
+//                                c.moveToFirst();
+//                                ActionTakeActivity.registeringUserIs = c.getString(0);
+//                            }
+//                            else
+//                            {
+//                                ActionTakeActivity.registeringUserIs=_username;
+//                                Cursor c = dbHelper.getEmail(registeringFullname);
+//                                if( c != null && c.moveToFirst() ){
+//                                    ActionTakeActivity.registeringEmail = c.getString(c.getColumnIndex("email"));
+//                                    c.close();
+//                                }
+//                            }
 
                             if (rememberMe.isChecked()) {
                                 sharedPrefWrite(_username, _password);
@@ -164,25 +191,21 @@ public class SignInActivity extends AppCompatActivity {
         String password;
 
         public void setUsername(String username) {
+
             this.username = username;
         }
-
         public void setPassword(String password) {
+
             this.password = password;
         }
-
         public sharedString() {
         }
-
         public String getUsername() {
             return username;
         }
 
-
         public String getPassword() {
             return password;
         }
-
-
 
     }}

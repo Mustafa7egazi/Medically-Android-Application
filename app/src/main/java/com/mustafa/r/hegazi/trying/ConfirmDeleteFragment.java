@@ -40,7 +40,7 @@ public class ConfirmDeleteFragment extends Fragment {
             public void onClick(View view) {
                 dbHelper = new DBHelper(getContext());
                 patientDB = new DBHelper.PatientDB(getContext());
-                if(dbHelper.checkPassword(passwordExt.getText().toString())){
+                if(dbHelper.checkPasswordForDeleteAccount(passwordExt.getText().toString())){
                     Snackbar.make(v,"Stored data will be lost", BaseTransientBottomBar.LENGTH_INDEFINITE).setAction("Delete anyway", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
