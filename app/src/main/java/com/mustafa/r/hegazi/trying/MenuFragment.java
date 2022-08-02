@@ -21,6 +21,7 @@ public class MenuFragment extends Fragment {
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,18 +32,19 @@ public class MenuFragment extends Fragment {
          logOutBtn = v.findViewById(R.id.logOutBtn);
         showMessageBtn = v.findViewById(R.id.showMessageBtn);
         helpBtn = v.findViewById(R.id.helpBtn);
-        usrName = v.findViewById(R.id.usrName);
-        email = v.findViewById(R.id.emailOfUser);
+        usrName = v.findViewById(R.id.fullnameOfUser);
+        email = v.findViewById(R.id.usernameOfUser);
         deleteAccount = v.findViewById(R.id.deleteAcc);
-        usrName.setText(""+ActionTakeActivity.registeringUserIs);
-        email.setText(""+ActionTakeActivity.registeringEmail);
+        usrName.setText("DR. "+SignInActivity.registeringFullname);
+        email.setText("username: "+ActionTakeActivity.registeringUserIs);
 
 
          contactBtn.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+5555555"));
-                 startActivity(i);
+                 startActivity(new Intent(getActivity(),SelectContact.class).putExtra("contact","contactBtn"));
+//                 Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+5555555"));
+//                 startActivity(i);
              }
          });
 

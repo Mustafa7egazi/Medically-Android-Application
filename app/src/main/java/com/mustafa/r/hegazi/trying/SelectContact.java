@@ -41,16 +41,22 @@ public class SelectContact extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = getIntent();
-                String messageBody = intent.getStringExtra("message");
-                String welcomeTxt = "Dear, "+(String) data.get(i).getName()+ ", I hope you doing well.\n";
-                //Toast.makeText(SelectContact.this, welcomeTxt+messageBody, Toast.LENGTH_SHORT).show();
-
-
-                Uri uri = Uri.parse("smsto:"+(String) data.get(i).getPhone());
-                Intent it = new Intent(Intent.ACTION_SENDTO, uri);
-                it.putExtra("sms_body", welcomeTxt+messageBody);
-                startActivity(it);
+                String whatComingFromContact = intent.getStringExtra("contact");
+                String whatComingFromMessage = intent.getStringExtra("message");
+                if (whatComingFromMessage==null && whatComingFromContact.equals("contactBtn"))
+                {
+                    Intent iContact = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ data.get(i).getPhone()));
+                    startActivity(iContact);
+                }else {
+                    String messageBody = intent.getStringExtra("message");
+                    String welcomeTxt = "Dear, " + data.get(i).getName() + ", I hope you doing well.\n";
+                    Uri uri = Uri.parse("smsto:" + data.get(i).getPhone());
+                    Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+                    it.putExtra("sms_body", welcomeTxt + messageBody);
+                    startActivity(it);
+                }
             }
         });
+
     }
 }

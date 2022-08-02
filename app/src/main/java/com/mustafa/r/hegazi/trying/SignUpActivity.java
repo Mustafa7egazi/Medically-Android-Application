@@ -90,6 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 else {
                                     ActionTakeActivity.registeringUserIs = _userName;
                                     ActionTakeActivity.registeringEmail = _email;
+                                    SignInActivity.registeringFullname = _fullname;
                                     dbHelper.registerUser(_fullname, _userName, _password, _email);
                                     Toast.makeText(SignUpActivity.this, "Success Registration", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(SignUpActivity.this, ActionTakeActivity.class));

@@ -25,6 +25,5 @@ public class AddPersonFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_add_person,container,false);
 
         return v;
-
     }
 }

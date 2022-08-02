@@ -48,7 +48,7 @@ public class ActionTakeActivity extends AppCompatActivity {
         menuFragment = new MenuFragment();
         androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, HomeFragment.class, null)
+                .replace(R.id.fragment_container_view, HomeFragment.class, null).addToBackStack(null)
                 .commit();
         navigationView = findViewById(R.id.bottomNav);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,16 +56,11 @@ public class ActionTakeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home: {
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.fragment_container_view, homeFragment, null)
-                                .commit();
+                        fragmentManager.beginTransaction().replace(R.id.fragment_container_view, homeFragment, null).addToBackStack(null).commit();
                         return (true);
                     }
-
                     case R.id.sideMenu: {
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.fragment_container_view, menuFragment, null)
-                                .commit();
+                        fragmentManager.beginTransaction().replace(R.id.fragment_container_view, menuFragment, null).addToBackStack(null).commit();
                         return (true);
                     }
                 }

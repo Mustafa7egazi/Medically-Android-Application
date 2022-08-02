@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/homeFragment"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -13,13 +13,13 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:gravity="center"
-        android:orientation="vertical"
-
-        >
+        android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="20dp"
             android:onClick="addBtnClick"
             app:cardCornerRadius="7dp"
@@ -30,20 +30,21 @@
                 android:id="@+id/addPatient"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:src="@mipmap/patient" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:fontFamily="@font/title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:background="#CFCECE"
                     android:gravity="center"
                     android:text="@string/add"
@@ -57,8 +58,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/showPatient"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="20dp"
             android:onClick="showBtnClick"
             app:cardCornerRadius="7dp"
@@ -67,20 +70,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:src="@mipmap/patient_2" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:fontFamily="@font/title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:background="#CFCECE"
                     android:gravity="center"
                     android:text="@string/explore"
@@ -94,8 +98,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/deletePatient"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="20dp"
             android:onClick="deleteBtnClick"
             app:cardCornerRadius="7dp"
@@ -104,20 +110,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_person_remove" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:fontFamily="@font/title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:background="#CFCECE"
                     android:gravity="center"
                     android:text="Delete Patient"
@@ -129,7 +136,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-
 
 
 </LinearLayout>

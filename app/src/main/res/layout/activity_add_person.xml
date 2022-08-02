@@ -7,7 +7,6 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".AddPersonFragment">
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +32,7 @@
                 android:elevation="7dp"
                 android:fontFamily="@font/title"
                 android:gravity="center"
-                android:text="Patient registeration"
+                android:text="Patient registration"
                 android:textColor="#FF9800"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -198,7 +197,8 @@
                     android:onClick="saveClick"
                     android:text="Save"
                     android:fontFamily="@font/title"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    style="?android:attr/buttonBarButtonStyle" />
 
                 <Button
                     android:id="@+id/reset"
@@ -211,7 +211,8 @@
                     android:onClick="resetClick"
                     android:text="Reset"
                     android:fontFamily="@font/title"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    style="?android:attr/buttonBarButtonStyle" />
             </LinearLayout>
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

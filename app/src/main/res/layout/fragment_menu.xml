@@ -26,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/usrName"
+            android:id="@+id/fullnameOfUser"
             style="@android:style/TextAppearance.Holo.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,19 +41,19 @@
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/emailOfUser"
+            android:id="@+id/usernameOfUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/usrName"
+            android:layout_below="@id/fullnameOfUser"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp"
-            android:text="email" />
+            android:text="username" />
 
         <TextView
             android:id="@+id/deleteAcc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/emailOfUser"
+            android:layout_below="@id/usernameOfUser"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
             android:text="Delete Account!"
@@ -79,7 +79,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="60dp"
                     android:gravity="center"
-                    android:text="Message"
+                    android:text="Message to"
                     android:textStyle="bold" />
 
                 <Button
@@ -92,7 +92,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="#FF9800"
-                    android:text="  SHOW   "
+                    android:text="  SEND   "
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="60dp"
                     android:gravity="center"
-                    android:text="Contact us"
+                    android:text="Contact with"
                     android:textStyle="bold" />
 
                 <Button
