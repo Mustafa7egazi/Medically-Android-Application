@@ -98,24 +98,7 @@ public class SignInActivity extends AppCompatActivity {
                                 c2.close();
                             }
 
-//                            String newString = _username;
-//                            newString = newString.substring(_username.length() - 3);
-//                            if (newString.equals("com"))
-//                            {
-//                                ActionTakeActivity.registeringEmail = _username;
-//                                Cursor c = dbHelper.getUsername(registeringFullname);
-//                                c.moveToFirst();
-//                                ActionTakeActivity.registeringUserIs = c.getString(0);
-//                            }
-//                            else
-//                            {
-//                                ActionTakeActivity.registeringUserIs=_username;
-//                                Cursor c = dbHelper.getEmail(registeringFullname);
-//                                if( c != null && c.moveToFirst() ){
-//                                    ActionTakeActivity.registeringEmail = c.getString(c.getColumnIndex("email"));
-//                                    c.close();
-//                                }
-//                            }
+
 
                             if (rememberMe.isChecked()) {
                                 sharedPrefWrite(_username, _password);
@@ -166,7 +149,7 @@ public class SignInActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = shared.edit();
         editor.putString("username",username);
         editor.putString("password",password);
-        editor.commit();
+        editor.apply();
     }
 
     public sharedString sharedPrefRead()
@@ -183,7 +166,7 @@ public class SignInActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.remove("username");
         editor.remove("password");
-        editor.commit();
+        editor.apply();
     }
     public static class sharedString
     {

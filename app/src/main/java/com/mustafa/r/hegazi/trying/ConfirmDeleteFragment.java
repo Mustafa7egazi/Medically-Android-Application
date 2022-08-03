@@ -1,5 +1,6 @@
 package com.mustafa.r.hegazi.trying;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,6 +25,7 @@ public class ConfirmDeleteFragment extends Fragment {
     Button confirm;
     DBHelper dbHelper;
     DBHelper.PatientDB patientDB;
+    androidx.appcompat.app.AlertDialog alertDialogBuilder;
 
     public ConfirmDeleteFragment() {
         // Required empty public constructor
@@ -41,22 +44,33 @@ public class ConfirmDeleteFragment extends Fragment {
                 dbHelper = new DBHelper(getContext());
                 patientDB = new DBHelper.PatientDB(getContext());
                 if(dbHelper.checkPasswordForDeleteAccount(passwordExt.getText().toString())){
-                    Snackbar.make(v,"Stored data will be lost", BaseTransientBottomBar.LENGTH_INDEFINITE).setAction("Delete anyway", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                              if (dbHelper.deleteUser(ActionTakeActivity.registeringUserIs)>0)
-                              {
-                                  patientDB.deleteAllPatients(ActionTakeActivity.registeringUserIs);
-                                  Toast.makeText(getActivity(), "Account deleted!", Toast.LENGTH_SHORT).show();
-                                  Intent intent = new Intent(getActivity(), SignInActivity.class);
-                                  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                  startActivity(intent);
-                              }
-                              else {
-                                  Toast.makeText(getActivity(), "something went wrong while deletion", Toast.LENGTH_SHORT).show();
-                              }
-                        }
-                    }).show();
+                    alertDialogBuilder = new MaterialAlertDialogBuilder(getActivity(),R.style.ThemeOverlay_App_MaterialAlertDialog)
+                            .setTitle("Account Deletion!").setMessage("All data will be lost")
+                            .setCancelable(false)
+                            .setPositiveButton("Delete anyway", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (dbHelper.deleteUser(ActionTakeActivity.registeringUserIs)>0)
+                                    {
+                                        patientDB.deleteAllPatients(ActionTakeActivity.registeringUserIs);
+                                        Intent intent = new Intent(getActivity(), SignInActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        Toast.makeText(getContext(), "Account deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Toast.makeText(getActivity(), "something went wrong while deletion", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            })
+                            .setIcon(R.drawable.ic_warning_24)
+                            .show();
+
                 }
                 else
                 {
@@ -68,3 +82,18 @@ public class ConfirmDeleteFragment extends Fragment {
         return v;
     }
 }
+
+/*
+
+ if (dbHelper.deleteUser(ActionTakeActivity.registeringUserIs)>0)
+                              {
+                                  patientDB.deleteAllPatients(ActionTakeActivity.registeringUserIs);
+                                  Toast.makeText(getActivity(), "Account deleted!", Toast.LENGTH_SHORT).show();
+                                  Intent intent = new Intent(getActivity(), SignInActivity.class);
+                                  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                  startActivity(intent);
+                              }
+                              else {
+                                  Toast.makeText(getActivity(), "something went wrong while deletion", Toast.LENGTH_SHORT).show();
+                              }
+ */

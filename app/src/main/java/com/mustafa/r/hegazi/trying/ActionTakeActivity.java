@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 public class ActionTakeActivity extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class ActionTakeActivity extends AppCompatActivity {
     EditText patientName, phone, nationalId, consultation, date;
     RadioButton genderMale, genderFemale;
     Button datePick, save, reset;
+    androidx.appcompat.app.AlertDialog alertDialogBuilder;
     DBHelper dbHelper;
     DBHelper.PatientDB patientDB;
     public static String registeringUserIs = "";
@@ -171,12 +174,27 @@ public class ActionTakeActivity extends AppCompatActivity {
             }
             else {
                 if (patientDB.patientSearch(_natId)) {
-                    Toast.makeText(this, "Patient already exist, so his data will be updated", Toast.LENGTH_SHORT).show();
-                    if (patientDB.updatePatient(_name, _phone, _natId, _consultation, _date, _gender)) {
-                        Toast.makeText(this, "Data updated successfully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "An error occurred while updating data", Toast.LENGTH_SHORT).show();
-                    }
+                    String final_gender = _gender;
+                    alertDialogBuilder = new MaterialAlertDialogBuilder(ActionTakeActivity.this,R.style.ThemeOverlay_App_MaterialAlertDialog)
+                            .setTitle("Notice!").setMessage("Patient already exist, so his data will be updated")
+                            .setCancelable(false)
+                            .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (patientDB.updatePatient(_name, _phone, _natId, _consultation, _date, final_gender)) {
+                                        Toast.makeText(ActionTakeActivity.this, "Data updated successfully", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ActionTakeActivity.this, "An error occurred while updating data", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).setNegativeButton("Discard", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            })
+                            .setIcon(R.drawable.ic_warning_24)
+                            .show();
                 } else {
 
                     if (patientDB.insertPatient(_name, _phone, _natId, _consultation, _date, _gender)) {
